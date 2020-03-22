@@ -2,8 +2,12 @@ import React from "react"
 
 
 const WeatherItem = (props) => {
-    const {weatherMain, weatherConditions, cityName} = props
-
+    const {
+        weatherMain,
+        weatherConditions,
+        cityName,
+        wind
+        } = props
     return(
 
         <div className='weatherItem'>
@@ -25,11 +29,14 @@ const WeatherItem = (props) => {
                     </div>
                 </div>
                 <div className='tempInfo'>
-                    <div>
+                    {/*<div>
                         Temp min {Math.ceil(weatherMain.temp_min) + ' °C'}
                     </div>
                     <div>
                         Temp max {Math.ceil(weatherMain.temp_max) + ' °C'}
+                    </div>*/}
+                    <div>
+                        Wind {wind.speed + '  km/h'}
                     </div>
                     <div>
                         Pressure {weatherMain.pressure + ' hPa'}
@@ -37,8 +44,10 @@ const WeatherItem = (props) => {
                     <div>
                         Humidity {weatherMain.humidity + ' %'}
                     </div>
+
                 </div>
             </div>
+            
         </div>
     )
 }

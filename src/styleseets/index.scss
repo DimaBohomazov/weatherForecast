@@ -10,7 +10,7 @@ body{
 
 }
 .weatherItem {
-  margin: 10px 100px;
+  margin: 50px 100px;
   .cityName {
     display: flex;
     justify-content: space-between;
@@ -21,6 +21,7 @@ body{
     }
   }
   .infoToday{
+    margin-top: 30px;
     display: flex;
     padding-left: 40px;
     font-size: 22px;
@@ -31,4 +32,13 @@ body{
     font-size: 18px;
     line-height: 40px
   }
+}
+.dateTime{
+  margin: 100px 100px;
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 22px;
+
+
 }

@@ -2,6 +2,7 @@ import React from "react";
 import {openWeatherApiKey} from "../utils/api"
 import WeatherItem from "./WeatherItem"
 import Header from "./Header"
+import DateTime from "./DateTime"
 
 class App extends React.Component{
     constructor(props) {
@@ -9,7 +10,9 @@ class App extends React.Component{
         this.state = {
             weatherMain: [],
             weatherConditions: [],
-            cityName: 'Kharkiv'
+            wind: [],
+            systemData: [],
+            cityName: 'Kharkiv',
         }
         console.log(this.state.weather)
     }
@@ -19,6 +22,12 @@ class App extends React.Component{
         console.log('didMount')
         this.getWeather()
     }
+
+   /* componentDidUpdate(prevProps, prevState) {
+        if(prevState.date !== this.state.date){
+            this.updateDate()
+        }
+    }*/
 
     getWeather = () => {
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${
@@ -33,10 +42,19 @@ class App extends React.Component{
                 console.log(data);
                 this.setState({
                     weatherConditions: data.weather[0],
-                    weatherMain: data.main
+                    weatherMain: data.main,
+                    wind: data.wind,
+                    systemData: data.sys
                 })
             })
     }
+    /*updateDate = () => {
+        const a = new Date()
+        this.setState({
+            date: a
+        })
+        console.log('date', this.state.date)
+    }*/
 
     render() {
         return(
@@ -45,9 +63,15 @@ class App extends React.Component{
                 <WeatherItem
                     weatherConditions = {this.state.weatherConditions}
                     weatherMain = {this.state.weatherMain}
+                    wind = {this.state.wind}
+                    
                     cityName = {this.state.cityName}
                 />
+                <DateTime
+                    systemData = {this.state.systemData}                
+                />
             </div>
+
         )
     }
 }
