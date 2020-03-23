@@ -1,21 +1,20 @@
 import React from "react";
+import {NavLink} from "react-router-dom"
 
-const Header = (props) => {
+const NavBar = props => {
     return(
         <nav className="navbar navbar-expand-lg navbar-light ">
             <h4 className='display-4'>Weather in Ukraine</h4>
-
-
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        <a className="nav-link" href="#"> Today </a>
+                        <NavLink to={'/'} exact className="nav-link"> Today </NavLink>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="#">Yesterday</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">For 5 days</a>
+                        <NavLink to={'/five-day'} exact className="nav-link">For 5 days</NavLink>
                     </li>
                 </ul>
                 <form className="form-inline my-2 my-lg-0 navbar">
@@ -27,4 +26,4 @@ const Header = (props) => {
     )
 }
 
-export default Header
+export default NavBar

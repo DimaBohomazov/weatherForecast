@@ -1,5 +1,6 @@
 import React from "react";
 
+
 class DateTime extends React.Component {
     constructor(props) {
         super(props);
@@ -33,26 +34,24 @@ class DateTime extends React.Component {
     };
 
     render(){
-
-    const {systemData} = this.props;
+        const {systemData} = this.props;
     
-
-    return(
-        <div className='dateTime'>
-            <div>
-                { this.state.date.toLocaleString()}
+        return(
+            <div className='dateTime'>
+                <div>
+                    { this.state.date.toLocaleString()}
+                </div>
+                <div>
+                    Sunrise {this.getSunTime(systemData.sunrise * 1000)}
+                </div>
+                <div>
+                    Sunset {this.getSunTime(systemData.sunset * 1000)}
+                </div>
+                <div>
+                    Day length {this.getDayLength(systemData.sunrise, systemData.sunset)}
+                </div>
+    
             </div>
-            <div>
-                Sunrise {this.getSunTime(systemData.sunrise * 1000)}
-            </div>
-            <div>
-                Sunset {this.getSunTime(systemData.sunset * 1000)}
-            </div>
-            <div>
-                Day length {this.getDayLength(systemData.sunrise, systemData.sunset)}
-            </div>
-
-        </div>
     )
 }
 }
