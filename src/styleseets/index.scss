@@ -10,7 +10,7 @@ body{
 
 }
 .weatherItem {
-  margin: 50px 100px;
+  margin: 50px 0;
   .cityName {
     display: flex;
     justify-content: space-between;
@@ -34,8 +34,26 @@ body{
   }
 }
 .dateTime{
-  margin-top: 60px;
+  margin-top: 50px;
   display: flex;
   justify-content: space-between;
   font-size: 22px;
+}
+.weatherFiveDayItems{
+  display: flex;
+  justify-content: space-between;
+        ul{
+          margin: 0;
+          padding: 10px 5px;
+          list-style: none;
+          width: 220px;
+          border: 2px solid #cacaca;
+          border-radius: 10px;
+
+          li{
+            list-style: none;
+
+
+          }
+        }
 }

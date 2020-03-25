@@ -44,46 +44,51 @@ class WeatherToday extends React.Component {
 
     render() {
         return (
-            <div className='weatherItem'>
-                <div className='cityName'>
-                    <h1 className='display-1'>
-                        {this.state.cityName}
-                    </h1>
-                    <div className='icon'>
-                        <img src={`http://openweathermap.org/img/wn/${this.state.weatherConditions.icon}@2x.png`} alt="description"
-                             title={this.state.weatherConditions.main}/>
-                        <p>{this.state.weatherConditions.description}</p>
-                    </div>
-                </div>
-                <div className='infoToday'>
-                    <div>
-                        <h3 className='display-1'>{Math.ceil(this.state.weatherMain.temp) + ' °C'}</h3>
-                        <div>
-                            <p>feels like <strong>{Math.ceil(this.state.weatherMain.feels_like) + ' °C'}</strong></p>
+            <div className='container'>
+                <div className='weatherItem'>
+                    <div className='cityName'>
+                        <h1 className='display-1'>
+                            {this.state.cityName}
+                        </h1>
+                        <div className='icon'>
+                            <img src={`http://openweathermap.org/img/wn/${this.state.weatherConditions.icon}@2x.png`} alt="description"
+                                 title={this.state.weatherConditions.main}/>
+                            <p>{this.state.weatherConditions.description}</p>
                         </div>
                     </div>
-                    <div className='tempInfo'>
-                        {/*<div>
+                    <div className='infoToday'>
+                        <div>
+                            <h3 className='display-1'>{Math.ceil(this.state.weatherMain.temp) + ' °C'}</h3>
+                            <div>
+                                <p>feels like <strong>{Math.ceil(this.state.weatherMain.feels_like) + ' °C'}</strong></p>
+                            </div>
+                        </div>
+                        <div className='tempInfo'>
+                            {/*<div>
                         Temp min {Math.ceil(weatherMain.temp_min) + ' °C'}
                     </div>
                     <div>
                         Temp max {Math.ceil(weatherMain.temp_max) + ' °C'}
                     </div>*/}
-                        <div>
-                            Wind {this.state.wind.speed + '  km/h'}
-                        </div>
-                        <div>
-                            Pressure {this.state.weatherMain.pressure + ' hPa'}
-                        </div>
-                        <div>
-                            Humidity {this.state.weatherMain.humidity + ' %'}
+                            <div>
+                                Wind {this.state.wind.speed + '  km/h'}
+                            </div>
+                            <div>
+                                Pressure {this.state.weatherMain.pressure + ' hPa'}
+                            </div>
+                            <div>
+                                Humidity {this.state.weatherMain.humidity + ' %'}
+                            </div>
                         </div>
                     </div>
+                    <footer>
+                        <DateTime
+                            data = {this.state.systemData}
+                        />
+                    </footer>
                 </div>
-                <DateTime
-                    systemData = {this.state.systemData}
-                />
             </div>
+
         )
     }
 }

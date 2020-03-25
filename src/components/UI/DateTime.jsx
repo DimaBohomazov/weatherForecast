@@ -34,7 +34,7 @@ class DateTime extends React.Component {
     };
 
     render(){
-        const {systemData} = this.props;
+        const {data} = this.props;
     
         return(
             <div className='dateTime'>
@@ -42,13 +42,13 @@ class DateTime extends React.Component {
                     { this.state.date.toLocaleString()}
                 </div>
                 <div>
-                    Sunrise {this.getSunTime(systemData.sunrise * 1000)}
+                    Sunrise {this.getSunTime(data.sunrise * 1000)}
                 </div>
                 <div>
-                    Sunset {this.getSunTime(systemData.sunset * 1000)}
+                    Sunset {this.getSunTime(data.sunset * 1000)}
                 </div>
                 <div>
-                    Day length {this.getDayLength(systemData.sunrise, systemData.sunset)}
+                    Day length {this.getDayLength(data.sunrise, data.sunset)}
                 </div>
     
             </div>
