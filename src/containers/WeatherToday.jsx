@@ -20,7 +20,9 @@ class WeatherToday extends React.Component {
         console.log('didMount')
         this.getWeather()
     }
-    
+    componentDidUpdate(prevProps, prevState) {
+        this.backgroundForBody()
+    }
 
     getWeather = () => {
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${
@@ -41,6 +43,24 @@ class WeatherToday extends React.Component {
                 })
             })
     }
+    backgroundForBody = () => {
+        const body = document.querySelector('body')
+        const now = new Date();
+        const sunrise = new Date(this.state.systemData.sunrise * 1000);
+        const sunset = new Date(this.state.systemData.sunset * 1000);
+        if(now.getHours() > sunrise.getHours() && now.getHours() < 11 ){
+            body.classList.add('morning')
+        } else if(now.getHours() >= 11 && now.getHours() <= sunset.getHours()-1){
+            body.classList.add('afternoon')
+        } else if(now.getHours() === sunset.getHours()){
+            body.classList.add('evening')
+        } else if(now.getHours() === sunrise.getHours() && now.getHours() === sunrise.getHours() - 1 ) {
+            body.classList.add('sunrise')
+        } else {
+            body.classList.add('night')
+        }
+
+    }
 
     render() {
         return (
@@ -60,7 +80,7 @@ class WeatherToday extends React.Component {
                         <div>
                             <h3 className='display-1'>{Math.ceil(this.state.weatherMain.temp) + ' °C'}</h3>
                             <div>
-                                <p>feels like <strong>{Math.ceil(this.state.weatherMain.feels_like) + ' °C'}</strong></p>
+                                <p>Feels like <strong>{Math.ceil(this.state.weatherMain.feels_like) + ' °C'}</strong></p>
                             </div>
                         </div>
                         <div className='tempInfo'>
@@ -71,7 +91,7 @@ class WeatherToday extends React.Component {
                         Temp max {Math.ceil(weatherMain.temp_max) + ' °C'}
                     </div>*/}
                             <div>
-                                Wind {this.state.wind.speed + '  km/h'}
+                                Wind {Math.ceil(this.state.wind.speed) + '  km/h'}
                             </div>
                             <div>
                                 Pressure {this.state.weatherMain.pressure + ' hPa'}

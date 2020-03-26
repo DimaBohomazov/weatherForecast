@@ -14,6 +14,8 @@ class DateTime extends React.Component {
             () => this.tick(),
             1000
         );
+        
+
     }
     componentWillUnmount() {
         clearInterval(this.timerID);
@@ -32,10 +34,11 @@ class DateTime extends React.Component {
         let a = new Date((sunset - sunrise) * 1000)
         return a.getHours() + ':' + a.getMinutes()
     };
+    
 
     render(){
         const {data} = this.props;
-    
+
         return(
             <div className='dateTime'>
                 <div>

@@ -8,17 +8,14 @@ const NavBar = props => {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        <NavLink to={'/'} exact className="nav-link"> Today </NavLink>
+                        <NavLink to={'/'} exact className="navLink"> Today </NavLink>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Yesterday</a>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink to={'/five-day'} exact className="nav-link">For 5 days</NavLink>
+                        <NavLink to={'/five-day'} exact className="navLink">For 5 days</NavLink>
                     </li>
                 </ul>
-                <form className="form-inline my-2 my-lg-0 navbar">
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">SELECT</button>
+                <form className="form-inline my-2 my-lg-1 ">
+                    <button className="btn btn-outline-light my-2 my-sm-0 mr-1" type="submit">SELECT</button>
                     <input className="form-control mr-sm-2" type="text" placeholder="YOUR CITY" aria-label="YOUR CITY" />
                 </form>
             </div>

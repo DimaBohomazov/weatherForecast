@@ -6,8 +6,8 @@ const WeathersFiveDayItems = props => {
     const dayString = props => {
         return (
             <div>
-                <strong>{new Date(props * 1000).toLocaleString('en',{weekday:'long'})}</strong> &nbsp;
-                {new Date(props * 1000).toLocaleDateString()}
+                {new Date(props * 1000).toLocaleDateString()}  &nbsp;
+                <h3>{new Date(props * 1000).toLocaleString('en-Ua',{weekday:'long'})}</h3>
             </div>
 
         )
@@ -19,7 +19,7 @@ const WeathersFiveDayItems = props => {
                 return(
                     <ul key={index}>
                         {dayString(item.dt)}
-                            {daysFilter(index).map(listItem =>{
+                            {daysFilter(index || index + 1).map(listItem =>{
                                 return(
                                     <WeathersFiveDayListItems
                                         listItem={listItem}
