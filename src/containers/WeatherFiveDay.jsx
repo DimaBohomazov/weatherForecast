@@ -35,8 +35,11 @@ class WeatherFiveDay extends React.Component {
                 console.log('list', this.state.weatherInfo)
             })
     }
-    daysFilter = props =>
-        this.state.weatherInfo.filter(item => new Date().getDate() + props === new Date(item.dt * 1000).getDate());
+    daysFilter = props => {
+        let time = Date.parse(Date()) + (86400000 * props)
+        return this.state.weatherInfo.filter(item =>
+            new Date(time).toLocaleDateString() === new Date(item.dt * 1000).toLocaleDateString())
+    }
     
     dayDate = () => {
         let dayDate = []

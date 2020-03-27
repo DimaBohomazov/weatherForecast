@@ -52,7 +52,7 @@ class WeatherToday extends React.Component {
             body.classList.add('morning')
         } else if(now.getHours() >= 11 && now.getHours() <= sunset.getHours()-1){
             body.classList.add('afternoon')
-        } else if(now.getHours() === sunset.getHours()){
+        } else if(now.getHours() >= sunset.getHours() && now.getHours() <= sunset.getHours() + 1 ){
             body.classList.add('evening')
         } else if(now.getHours() === sunrise.getHours() && now.getHours() === sunrise.getHours() - 1 ) {
             body.classList.add('sunrise')

@@ -19,7 +19,7 @@ const WeathersFiveDayItems = props => {
                 return(
                     <ul key={index}>
                         {dayString(item.dt)}
-                            {daysFilter(index || index + 1).map(listItem =>{
+                            {daysFilter(index).map(listItem =>{
                                 return(
                                     <WeathersFiveDayListItems
                                         listItem={listItem}
