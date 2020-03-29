@@ -1,6 +1,8 @@
 import React from "react"
 import {openWeatherApiKey} from "../utils/api"
 import DateTime from "../components/UI/DateTime"
+import Loader from "../components/UI/Loader"
+import axios from "axios"
 
 
 class WeatherToday extends React.Component {
@@ -12,6 +14,7 @@ class WeatherToday extends React.Component {
             wind: [],
             systemData: [],
             cityName: 'Kharkov',
+            loading: true
         }
         console.log(this.state.weather)
     }
@@ -24,8 +27,23 @@ class WeatherToday extends React.Component {
         this.backgroundForBody()
     }
 
-    getWeather = () => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${
+    getWeather = async () => {
+        try{
+            const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${
+                this.state.cityName
+            },ua&units=metric&mode=json&appid=${openWeatherApiKey}`)
+            this.setState({
+                weatherConditions: response.data.weather[0],
+                weatherMain: response.data.main,
+                wind: response.data.wind,
+                systemData: response.data.sys,
+                loading: false
+            })
+        } catch(e) {
+            console.log(e)
+        }
+
+        /*fetch(`https://api.openweathermap.org/data/2.5/weather?q=${
                 this.state.cityName
             },
         ua&units=metric&mode=json&appid=${openWeatherApiKey}`
@@ -41,7 +59,7 @@ class WeatherToday extends React.Component {
                     wind: data.wind,
                     systemData: data.sys
                 })
-            })
+            })*/
     }
     backgroundForBody = () => {
         const body = document.querySelector('body')
@@ -76,36 +94,41 @@ class WeatherToday extends React.Component {
                             <p>{this.state.weatherConditions.description}</p>
                         </div>
                     </div>
-                    <div className='infoToday'>
-                        <div>
-                            <h3 className='display-1'>{Math.ceil(this.state.weatherMain.temp) + ' °C'}</h3>
-                            <div>
-                                <p>Feels like <strong>{Math.ceil(this.state.weatherMain.feels_like) + ' °C'}</strong></p>
-                            </div>
-                        </div>
-                        <div className='tempInfo'>
-                            {/*<div>
+                    {this.state.loading
+                        ? <Loader />
+                        : <React.Fragment>
+                            <div className='infoToday'>
+                                <div>
+                                    <h3 className='display-1'>{Math.ceil(this.state.weatherMain.temp) + ' °C'}</h3>
+                                    <div>
+                                        <p>Feels like <strong>{Math.ceil(this.state.weatherMain.feels_like) + ' °C'}</strong></p>
+                                    </div>
+                                </div>
+                                <div className='tempInfo'>
+                                    {/*<div>
                         Temp min {Math.ceil(weatherMain.temp_min) + ' °C'}
                     </div>
                     <div>
                         Temp max {Math.ceil(weatherMain.temp_max) + ' °C'}
                     </div>*/}
-                            <div>
-                                Wind {Math.ceil(this.state.wind.speed) + '  km/h'}
+                                    <div>
+                                        Wind {Math.ceil(this.state.wind.speed) + '  km/h'}
+                                    </div>
+                                    <div>
+                                        Pressure {this.state.weatherMain.pressure + ' hPa'}
+                                    </div>
+                                    <div>
+                                        Humidity {this.state.weatherMain.humidity + ' %'}
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                Pressure {this.state.weatherMain.pressure + ' hPa'}
-                            </div>
-                            <div>
-                                Humidity {this.state.weatherMain.humidity + ' %'}
-                            </div>
-                        </div>
-                    </div>
-                    <footer>
-                        <DateTime
-                            data = {this.state.systemData}
-                        />
-                    </footer>
+                            <footer>
+                                <DateTime
+                                    data = {this.state.systemData}
+                                />
+                            </footer>
+                        </React.Fragment>
+                    }
                 </div>
             </div>
 

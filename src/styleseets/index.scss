@@ -6,13 +6,13 @@
 
 }
 .sunrise{
-  background: linear-gradient(to right, #622569, #a7708f, #f4e1d2 )
+  background: linear-gradient(to right, #622569, #a7708f, #f4e1d2)
 }
 .morning{
-  background: linear-gradient(to right, #fefbd8, #ffefba, #ffef96 )
+  background: linear-gradient(to right, #fefbd8, #ffefba, #ffef96)
 }
 .afternoon{
-  background: linear-gradient(to right, #ffef96, #feb236,  #fd8355)
+  background: linear-gradient(to right, #ffef96, #feb236, #fd8355)
 }
 .evening{
   background: linear-gradient(to right, #fd8355, #f0576c, #483d8b);
@@ -20,7 +20,7 @@
 
 .navbar{
   font-size: 30px;
-  background-color: rgba(107, 91, 149, 0.51);
+  background-color: rgba(107, 91, 149, 0.3);
   text-transform: uppercase;
   height: 100px;
   li{
@@ -30,7 +30,7 @@
 
 }
 .weatherItem {
-  margin: 50px 0;
+  margin: 20px 0;
   .cityName {
     display: flex;
     justify-content: space-between;
@@ -41,7 +41,8 @@
     }
   }
   .infoToday{
-    margin-top: 30px;
+    margin-top: 20px;
+    margin-bottom: 100px;
     display: flex;
     padding-left: 40px;
     font-size: 22px;
@@ -70,7 +71,7 @@
           width: 220px;
           border: 2px solid #cccccc;
           border-radius: 10px;
-          background-color: rgba(107, 91, 149, 0.44);
+          background-color: rgba(107, 91, 149, 0.3);
           //color: #000;
 
           li{
@@ -109,11 +110,42 @@
     text-decoration: none;
     color: #caca;
   }
+  &.active{
+    color: rgb(122, 90, 122);
+  }
   &:active{
     color: #cccccccc;
   }
-  &.active{
-    color: #cccccccc;
+}
+.lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #fed;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
   }
 }
-
