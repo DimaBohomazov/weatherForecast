@@ -15,7 +15,7 @@ const NavBar = props => {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        <NavLink to={'/'} exact className="navLink"> Today </NavLink>
+                        <NavLink to={'/'} exact className="navLink"> now </NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink to={'/five-day'} exact className="navLink">For 5 days</NavLink>

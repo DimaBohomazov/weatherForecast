@@ -32,8 +32,9 @@ class WeatherFiveDay extends React.Component {
     render() {
         return (
             <div className='container-'>
-                <header>
-                    <h1 className='display-4' style={{textAlign: 'center'}}> {this.props.cityName} next time</h1>
+                <header style={{textAlign: 'center'}}>
+                    <h1 className='display-4' > {this.props.cityName} </h1>
+                    <h3>Hourly weather and forecasts in your city.</h3>
                 </header>
                 {this.props.loading
                    ? <Loader />

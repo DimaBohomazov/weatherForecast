@@ -14,27 +14,26 @@ class WeatherToday extends React.Component {
         if(prevProps.cityName !== this.props.cityName){
             this.props.fetchWeathers()
         }
-        this.backgroundForBody()
+        //this.backgroundForBody()
         console.log('update')
     }
-    backgroundForBody = () => {
-        const body = document.querySelector('body')
-        const now = new Date();
-        const sunrise = new Date(this.props.systemData.sunrise * 1000);
-        const sunset = new Date(this.props.systemData.sunset * 1000);
-        if(now.getHours() > sunrise.getHours() + 1 && now.getHours() < 11 ){
-            body.classList.add('morning')
-        } else if(now.getHours() >= 11 && now.getHours() <= sunset.getHours()-1){
-            body.classList.add('afternoon')
-        } else if(now.getHours() >= sunset.getHours() && now.getHours() <= sunset.getHours() + 1 ){
-            body.classList.add('evening')
-        } else if(now.getHours() >= sunrise.getHours() && now.getHours() <= sunrise.getHours() + 1 ) {
-            body.classList.add('sunrise')
-        } else {
-            body.classList.add('night')
-        }
-
-    }
+    // backgroundForBody = () => {
+    //     const body = document.querySelector('body')
+    //     const now = new Date();
+    //     const sunrise = new Date(this.props.systemData.sunrise * 1000);
+    //     const sunset = new Date(this.props.systemData.sunset * 1000);
+    //     if(now.getHours() > sunrise.getHours() + 1 && now.getHours() < 11 ){
+    //         body.classList.add('morning')
+    //     } else if(now.getHours() >= 11 && now.getHours() <= sunset.getHours()-1){
+    //         body.classList.add('afternoon')
+    //     } else if(now.getHours() >= sunset.getHours() && now.getHours() <= sunset.getHours() + 1 ){
+    //         body.classList.add('evening')
+    //     } else if(now.getHours() >= sunrise.getHours() && now.getHours() <= sunrise.getHours() + 1 ) {
+    //         body.classList.add('sunrise')
+    //     } else {
+    //         body.classList.add('night')
+    //     }
+    // }
 
     render() {
         return (
