@@ -1,70 +1,27 @@
 import React from "react"
-import {openWeatherApiKey} from "../utils/api"
 import DateTime from "../components/UI/DateTime"
 import Loader from "../components/UI/Loader"
-import axios from "axios"
+import {connect} from "react-redux"
+import {fetchWeathers} from "../store/actions/weathers"
 
 
 class WeatherToday extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            weatherMain: [],
-            weatherConditions: [],
-            wind: [],
-            systemData: [],
-            cityName: 'Kharkov',
-            loading: true
-        }
-    }
-
     componentDidMount() {
         console.log('didMount')
-        this.getWeather()
+        this.props.fetchWeathers()
     }
     componentDidUpdate(prevProps, prevState) {
-        this.backgroundForBody()
-    }
-
-    getWeather = async () => {
-        try{
-            const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${
-                this.state.cityName
-            },ua&units=metric&mode=json&appid=${openWeatherApiKey}`)
-            this.setState({
-                weatherConditions: response.data.weather[0],
-                weatherMain: response.data.main,
-                wind: response.data.wind,
-                systemData: response.data.sys,
-                loading: false
-            })
-        } catch(e) {
-            console.log(e)
+        if(prevProps.cityName !== this.props.cityName){
+            this.props.fetchWeathers()
         }
-
-        /*fetch(`https://api.openweathermap.org/data/2.5/weather?q=${
-                this.state.cityName
-            },
-        ua&units=metric&mode=json&appid=${openWeatherApiKey}`
-        )
-            .then((response) => {
-                return response.json()
-            })
-            .then((data) => {
-                console.log(data);
-                this.setState({
-                    weatherConditions: data.weather[0],
-                    weatherMain: data.main,
-                    wind: data.wind,
-                    systemData: data.sys
-                })
-            })*/
+        this.backgroundForBody()
+        console.log('update')
     }
     backgroundForBody = () => {
         const body = document.querySelector('body')
         const now = new Date();
-        const sunrise = new Date(this.state.systemData.sunrise * 1000);
-        const sunset = new Date(this.state.systemData.sunset * 1000);
+        const sunrise = new Date(this.props.systemData.sunrise * 1000);
+        const sunset = new Date(this.props.systemData.sunset * 1000);
         if(now.getHours() > sunrise.getHours() + 1 && now.getHours() < 11 ){
             body.classList.add('morning')
         } else if(now.getHours() >= 11 && now.getHours() <= sunset.getHours()-1){
@@ -85,28 +42,29 @@ class WeatherToday extends React.Component {
                 <div className='weatherItem'>
                     <div className='cityName'>
                         <h1 className='display-1'>
-                            {this.state.cityName}
+                            {this.props.cityName}
                         </h1>
                         
-                        {this.state.loading
+                        {this.props.loading && this.props.length !== 0
                             ? <Loader/>
                             : <div className='icon'>
-                                <img src={`http://openweathermap.org/img/wn/${this.state.weatherConditions.icon}@2x.png`} alt="description"
-                                     title={this.state.weatherConditions.main}/>
-                                <p>{this.state.weatherConditions.description}</p>
+                                <img src={`http://openweathermap.org/img/wn/${this.props.weatherConditions.icon}@2x.png`}
+                                     alt={this.props.weatherConditions.description}
+                                     title={this.props.weatherConditions.main}/>
+                                <p>{this.props.weatherConditions.description}</p>
                             </div>
                         }
 
                     </div>
 
-                    {this.state.loading
+                    {this.props.loading && this.props.length !== 0
                         ? <Loader />
                         : <React.Fragment>
                             <div className='infoToday'>
                                 <div>
-                                    <h3 className='display-1'>{Math.ceil(this.state.weatherMain.temp) + ' °C'}</h3>
+                                    <h3 className='display-1'>{Math.ceil(this.props.weatherMain.temp) + ' °C'}</h3>
                                     <div>
-                                        <p>Feels like <strong>{Math.ceil(this.state.weatherMain.feels_like) + ' °C'}</strong></p>
+                                        <p>Feels like <strong>{Math.ceil(this.props.weatherMain.feels_like) + ' °C'}</strong></p>
                                     </div>
                                 </div>
                                 <div className='tempInfo'>
@@ -117,19 +75,19 @@ class WeatherToday extends React.Component {
                         Temp max {Math.ceil(weatherMain.temp_max) + ' °C'}
                     </div>*/}
                                     <div>
-                                        Wind {Math.ceil(this.state.wind.speed) + '  m/s'}
+                                        Wind {Math.ceil(this.props.wind.speed) + '  m/s'}
                                     </div>
                                     <div>
-                                        Pressure {this.state.weatherMain.pressure + ' hPa'}
+                                        Pressure {this.props.weatherMain.pressure + ' hPa'}
                                     </div>
                                     <div>
-                                        Humidity {this.state.weatherMain.humidity + ' %'}
+                                        Humidity {this.props.weatherMain.humidity + ' %'}
                                     </div>
                                 </div>
                             </div>
                             <footer>
                                 <DateTime
-                                    data = {this.state.systemData}
+                                    data = {this.props.systemData}
                                 />
                             </footer>
                         </React.Fragment>
@@ -140,5 +98,22 @@ class WeatherToday extends React.Component {
         )
     }
 }
+function mapStateToProps(state){
+    console.log(state.weathers.cityName)
+    return{
+        weatherMain: state.weathers.weatherMain,
+        weatherConditions: state.weathers.weatherConditions,
+        wind: state.weathers.wind,
+        systemData: state.weathers.systemData,
+        cityName: state.weathers.cityName,
+        loading: state.weathers.loading
 
-export default WeatherToday
+    }
+}
+function mapDispatchToProps(dispatch){
+    return{
+        fetchWeathers: () => dispatch(fetchWeathers())
+    }
+}
+
+export default  connect(mapStateToProps, mapDispatchToProps)(WeatherToday)

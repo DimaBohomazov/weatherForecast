@@ -31,8 +31,9 @@ class DateTime extends React.Component {
         return a.toLocaleString('ua', options)
     };
     getDayLength = (sunrise, sunset) =>{
-        let a = new Date((sunset - sunrise) * 1000)
-        return a.getHours() + ':' + a.getMinutes()
+        let a = new Date(sunset *1000) - new Date(sunrise *1000) - 3*3600000
+        let options = {hour: 'numeric', minute: 'numeric'}
+        return new Date(a).toLocaleString('ua', options)
     };
     
 
