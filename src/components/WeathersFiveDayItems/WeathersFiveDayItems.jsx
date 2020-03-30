@@ -11,7 +11,7 @@ const WeathersFiveDayItems = props => {
             </div>
 
         )
-    }
+    };
     
     return (
         <div className='weatherFiveDayItems'>
@@ -33,25 +33,7 @@ const WeathersFiveDayItems = props => {
                 )
             })}
         </div>
-
-
-    /*{daysFilter(index).map(listItem =>{
-            return(
-                <WeathersFiveDayListItems
-                    listItem={listItem}
-                />
-            )
-        }
-    )}*/
-
-        /*<ul>
-            <li>
-                { listItem.dt }
-            </li>
-        </ul>*/
-
     )
-
-}
+};
 
 export default WeathersFiveDayItems;

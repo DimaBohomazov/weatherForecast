@@ -16,7 +16,6 @@ class WeatherToday extends React.Component {
             cityName: 'Kharkov',
             loading: true
         }
-        console.log(this.state.weather)
     }
 
     componentDidMount() {
@@ -66,13 +65,13 @@ class WeatherToday extends React.Component {
         const now = new Date();
         const sunrise = new Date(this.state.systemData.sunrise * 1000);
         const sunset = new Date(this.state.systemData.sunset * 1000);
-        if(now.getHours() > sunrise.getHours() && now.getHours() < 11 ){
+        if(now.getHours() > sunrise.getHours() + 1 && now.getHours() < 11 ){
             body.classList.add('morning')
         } else if(now.getHours() >= 11 && now.getHours() <= sunset.getHours()-1){
             body.classList.add('afternoon')
         } else if(now.getHours() >= sunset.getHours() && now.getHours() <= sunset.getHours() + 1 ){
             body.classList.add('evening')
-        } else if(now.getHours() === sunrise.getHours() && now.getHours() === sunrise.getHours() - 1 ) {
+        } else if(now.getHours() >= sunrise.getHours() && now.getHours() <= sunrise.getHours() + 1 ) {
             body.classList.add('sunrise')
         } else {
             body.classList.add('night')
@@ -88,12 +87,18 @@ class WeatherToday extends React.Component {
                         <h1 className='display-1'>
                             {this.state.cityName}
                         </h1>
-                        <div className='icon'>
-                            <img src={`http://openweathermap.org/img/wn/${this.state.weatherConditions.icon}@2x.png`} alt="description"
-                                 title={this.state.weatherConditions.main}/>
-                            <p>{this.state.weatherConditions.description}</p>
-                        </div>
+                        
+                        {this.state.loading
+                            ? <Loader/>
+                            : <div className='icon'>
+                                <img src={`http://openweathermap.org/img/wn/${this.state.weatherConditions.icon}@2x.png`} alt="description"
+                                     title={this.state.weatherConditions.main}/>
+                                <p>{this.state.weatherConditions.description}</p>
+                            </div>
+                        }
+
                     </div>
+
                     {this.state.loading
                         ? <Loader />
                         : <React.Fragment>
@@ -112,7 +117,7 @@ class WeatherToday extends React.Component {
                         Temp max {Math.ceil(weatherMain.temp_max) + ' °C'}
                     </div>*/}
                                     <div>
-                                        Wind {Math.ceil(this.state.wind.speed) + '  km/h'}
+                                        Wind {Math.ceil(this.state.wind.speed) + '  m/s'}
                                     </div>
                                     <div>
                                         Pressure {this.state.weatherMain.pressure + ' hPa'}

@@ -1,11 +1,11 @@
 import React from 'react';
 
 function WeathersFiveDayListItems(props) {
-    const {listItem} = props
+    const {listItem} = props;
 
     const time = props =>
         new Date(props * 1000).toLocaleTimeString('ua', {hour: 'numeric', minute: 'numeric'} );
-    const getClassLi = () => listItem.sys.pod === 'd' ? 'dayList' : 'nightList'
+    const getClassLi = () => listItem.sys.pod === 'd' ? 'dayList' : 'nightList';
     return (
         <li className={getClassLi()}>
             <div >

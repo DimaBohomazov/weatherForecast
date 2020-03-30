@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom"
 const NavBar = props => {
     return(
         <nav className="navbar navbar-expand-lg navbar-light ">
-            <h4 className='display-4'>Weather in Ukraine</h4>
+            <h4 className='display-4' style={{cursor: 'default'}}>Weather in Ukraine</h4>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
