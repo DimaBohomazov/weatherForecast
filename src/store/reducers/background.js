@@ -1,9 +1,5 @@
 import {
-    ADD_STYLE,
-    // ADD_AFTERNOON_STYLE,
-    // ADD_EVENING_STYLE,
-    // ADD_SUNRISE_STYLE,
-    // ADD_NIGHT_STYLE
+    ADD_STYLE
 } from "../actions/actionTypes"
 
 const initialState = {
@@ -16,22 +12,6 @@ export default function backgroundReducer(state = initialState, action) {
             return{
                 ...state, backStyle: action.backStyle
             }
-        // case ADD_AFTERNOON_STYLE:
-        //     return{
-        //         ...state, backStyle: action.backStyle
-        //     }
-        // case ADD_EVENING_STYLE:
-        //     return{
-        //         ...state, backStyle: action.backStyle
-        //     }
-        // case ADD_SUNRISE_STYLE:
-        //     return{
-        //         ...state, backStyle: action.backStyle
-        //     }
-        // case ADD_NIGHT_STYLE:
-        //     return{
-        //         ...state, backStyle: action.backStyle
-        //     }
         default:
             return state
     }

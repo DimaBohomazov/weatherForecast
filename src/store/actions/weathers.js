@@ -1,5 +1,6 @@
 import axios from "axios";
 import {weatherApiLink} from "../../utils/api"
+import {getBackStyle} from "./background"
 import {
     FETCH_WEATHERS_START,
     FETCH_WEATHERS_SUCCESS,
@@ -27,13 +28,7 @@ export function fetchWeathers() {
 
             dispatch(fetchWeathersSuccess(data))
             console.log('get',getState().weathers)
-            /*this.setState({
-                weatherConditions: response.data.weather[0],
-                weatherMain: response.data.main,
-                wind: response.data.wind,
-                systemData: response.data.sys,
-                loading: false
-            })*/
+            dispatch(getBackStyle())
         } catch(e) {
             dispatch(fetchWeathersError(e))
         }
@@ -70,6 +65,7 @@ export function fetchWeathersFiveDays() {
             const response = await axios.get(weatherApiLink('forecast', stateCityName))
             const data = response.data
             dispatch(fetchWeathersSuccessFiveDays(data))
+            dispatch(getBackStyle())
         } catch(e) {
             dispatch(fetchWeathersError(e))
         }

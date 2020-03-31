@@ -12,7 +12,6 @@ const WeathersFiveDayItems = props => {
 
         )
     };
-    
     return (
         <div className='weatherFiveDayItems'>
             {dayDate.map((item, index) =>{
@@ -29,7 +28,6 @@ const WeathersFiveDayItems = props => {
                             }
                         )}
                     </ul>
-
                 )
             })}
         </div>

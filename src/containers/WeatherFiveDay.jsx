@@ -1,14 +1,18 @@
 import React from 'react';
-import DateTime from "../components/UI/DateTime"
 import Loader from "../components/UI/Loader"
 import WeathersFiveDayItems from "../components/WeathersFiveDayItems/WeathersFiveDayItems"
+import ErrorBoundary from "../components/ErrorBoundary"
 import {connect} from "react-redux"
 import {fetchWeathersFiveDays} from "../store/actions/weathers"
 
+
 class WeatherFiveDay extends React.Component {
+
     componentDidMount() {
         this.props.fetchWeathersFiveDays()
+
     }
+
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.cityName !== this.props.cityName) {
             this.props.fetchWeathersFiveDays()
@@ -31,43 +35,38 @@ class WeatherFiveDay extends React.Component {
     
     render() {
         return (
-            <div className='container-'>
-                <header style={{textAlign: 'center'}}>
-                    <h1 className='display-4' > {this.props.cityName} </h1>
-                    <h3>Hourly weather and forecasts in your city.</h3>
-                </header>
-                {this.props.loading
-                   ? <Loader />
-                   :<React.Fragment>
-                        <div>
+            <ErrorBoundary>
+                <div className='container-'>
+                    <header style={{textAlign: 'center'}}>
+                        <h1 className='display-4' > {this.props.cityName} </h1>
+                        <p>Hourly weather and forecasts in your city.</p>
+                    </header>
+                    {this.props.loading
+                        ? <Loader />
+                        : <div>
                             <WeathersFiveDayItems
                                 weatherInfo={this.props.weatherInfoFiveDays}
                                 daysFilter={this.daysFilter}
                                 dayDate={this.dayDate()}
                             />
                         </div>
-                        <footer className='m-5'>
-                            <DateTime
-                                data = {this.props.cityDataFiveDays}
-                            />
-                        </footer>
-                    </React.Fragment>
-                }
-            </div>
+                    }
+                </div>
+            </ErrorBoundary>
+
         );
     }
 }
 function mapStateToProps(state) {
     return{
         cityName: state.weathers.cityName,
-        cityDataFiveDays: state.weathers.cityDataFiveDays,
         weatherInfoFiveDays: state.weathers.weatherInfoFiveDays,
         loading: state.weathers.loading,
     }
 }
 function mapDispatchToProps(dispatch){
     return{
-        fetchWeathersFiveDays: () => dispatch(fetchWeathersFiveDays())
+        fetchWeathersFiveDays: () => dispatch(fetchWeathersFiveDays()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(WeatherFiveDay);

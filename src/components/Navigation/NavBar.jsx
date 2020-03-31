@@ -5,9 +5,9 @@ import {setCityName} from "../../store/actions/weathers"
 const NavBar = props => {
     const cityNameHandler = (event) => {
         event.preventDefault()
-        let fetchValue = document.getElementById('city-input').value;
-        let cityName = fetchValue.charAt(0).toUpperCase() + fetchValue.slice(1)
-        return cityName
+            let fetchValue = document.getElementById('city-input').value;
+            let cityName = fetchValue.charAt(0).toUpperCase() + fetchValue.slice(1)
+            return cityName
     }
     return (
         <nav className="navbar navbar-expand-lg navbar-light ">
@@ -21,7 +21,7 @@ const NavBar = props => {
                         <NavLink to={'/five-day'} exact className="navLink">For 5 days</NavLink>
                     </li>
                 </ul>
-                <form className="form-inline my-2 my-lg-1 ">
+                <form className="form-inline my-2 my-lg-1">
                     <button className="btn btn-outline-light my-2 my-sm-0 mr-1"
                             type="submit"
                             onClick={(event) => props.setCityName(cityNameHandler(event))}

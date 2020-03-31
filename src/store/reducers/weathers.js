@@ -32,6 +32,7 @@ export default function weathersReducer(state=initialState, action) {
                 weatherMain: action.weatherMain,
                 wind: action.wind,
                 systemData: action.systemData,
+                error: null
             }
         case FETCH_WEATHERS_ERROR:
             return{
@@ -41,8 +42,9 @@ export default function weathersReducer(state=initialState, action) {
             return{
                 ...state,
                 loading: false,
-                cityDataFiveDays: action.cityDataFiveDays,
-                weatherInfoFiveDays: action.weatherInfoFiveDays
+                systemData: action.cityDataFiveDays,
+                weatherInfoFiveDays: action.weatherInfoFiveDays,
+                error: null
             }
         case SET_CITY_NAME:
             return{

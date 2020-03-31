@@ -1,30 +1,26 @@
 import React, {Component} from 'react';
 import NavBar from "../components/Navigation/NavBar"
+import DateTime from "../components/UI/DateTime"
 
 class Layout extends Component {
-    // state = {
-    //     cityName: 'Kharkov'
-    // };
-    
-    render() {
-        // const children = React.Children.map(this.props.children, (child) => {
-        //     return React.cloneElement(child, {
-        //         cityName: this.state.cityName
-        //     });
-        // });
 
-        
+    render() {
         return (
             <div>
-                <NavBar />
-                
+                <header>
+                    <NavBar />
+                </header>
+
                 <main>
                     { this.props.children }
                 </main>
-                
+
+                <footer>
+                    <DateTime/>
+                </footer>
             </div>
         );
     }
 }
 
-export default Layout;
+export default Layout

@@ -1,6 +1,5 @@
 import React from "react";
 import {connect} from "react-redux"
-import {getBackStyle} from "../../store/actions/background"
 
 class DateTime extends React.Component {
     constructor(props) {
@@ -15,24 +14,16 @@ class DateTime extends React.Component {
             () => this.tick(),
             1000
         );
-        this.props.getBackStyle()
     }
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if(prevProps.backStyle !== this.props.backStyle){
-            this.props.getBackStyle()
-        }
-    }
-
     componentWillUnmount() {
         clearInterval(this.timerID);
-    }
+        }
 
     tick() {
         this.setState({
             date: new Date()
         });
     }
-
     getSunTime = props => {
         let a = new Date(props)
         let options = {hour: 'numeric', minute: 'numeric'}
@@ -44,9 +35,7 @@ class DateTime extends React.Component {
         return new Date(a).toLocaleString('ua', options)
     };
 
-
     render() {
-        const {data} = this.props;
 
         return (
             <div className='dateTime'>
@@ -54,13 +43,13 @@ class DateTime extends React.Component {
                     {this.state.date.toLocaleString()}
                 </div>
                 <div>
-                    Sunrise {this.getSunTime(data.sunrise * 1000)}
+                    Sunrise {this.getSunTime(this.props.data.sunrise * 1000)}
                 </div>
                 <div>
-                    Sunset {this.getSunTime(data.sunset * 1000)}
+                    Sunset {this.getSunTime(this.props.data.sunset * 1000)}
                 </div>
                 <div>
-                    Day length {this.getDayLength(data.sunrise, data.sunset)}
+                    Day length {this.getDayLength(this.props.data.sunrise, this.props.data.sunset)}
                 </div>
 
             </div>
@@ -69,13 +58,7 @@ class DateTime extends React.Component {
 }
 function mapStateToProps(state){
     return{
-        backStyle: state.background.backStyle
+        data: state.weathers.systemData
     }
 }
-function mapDispatchToProps(dispatch){
-    return{
-        getBackStyle: () => dispatch(getBackStyle())
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DateTime)
+export default connect(mapStateToProps)(DateTime)
