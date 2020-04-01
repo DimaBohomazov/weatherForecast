@@ -9,9 +9,9 @@ function App(){
         <div>
             <Layout>
                 <Switch>
-                    <Route path='/five-day' exact component={WeatherFiveDay} />
-                    <Route path='/' exact component={WeatherToday} />
-                    <Redirect to={'/'} />
+                    <Route path='/weatherForecast/five-day' exact component={WeatherFiveDay} />
+                    <Route path='/weatherForecast/' exact component={WeatherToday} />
+                    <Redirect to={'/weatherForecast/'} />
                 </Switch>
             </Layout>
         </div>

@@ -9,9 +9,14 @@ class ErrorBoundary extends React.Component {
         let cityName = fetchValue.charAt(0).toUpperCase() + fetchValue.slice(1)
         return cityName
     }
-
+    bodyClassRemove = () =>{
+        const body = document.querySelector('body')
+        const className = body.classList.item(0)
+        return body.classList.remove(className)
+    }
     render() {
         if(this.props.error){
+            this.bodyClassRemove()
             return (
                 <div className='container error'>
                     <h1 className='display-1'>
