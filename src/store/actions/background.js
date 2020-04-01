@@ -4,7 +4,6 @@ import {
 
 export function getBackStyle() {
     return (dispatch, getState)=>{
-        console.log("getState",getState().background)
         const now = new Date();
         const sunrise = new Date(getState().weathers.systemData.sunrise * 1000);
         const sunset = new Date(getState().weathers.systemData.sunset * 1000);

@@ -6,7 +6,6 @@ import {fetchWeathers} from "../store/actions/weathers"
 
 class WeatherToday extends React.Component {
     componentDidMount() {
-        console.log('didMount')
         this.props.fetchWeathers()
     }
 

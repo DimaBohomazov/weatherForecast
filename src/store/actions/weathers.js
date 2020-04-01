@@ -10,7 +10,6 @@ import {
 } from "./actionTypes"
 
 export function setCityName(cityName) {
-    console.log("cityName",cityName )
     return{
         type: SET_CITY_NAME,
         cityName
@@ -19,7 +18,6 @@ export function setCityName(cityName) {
 
 export function fetchWeathers() {
     return async (dispatch, getState) => {
-        console.log('get',getState().weathers)
         dispatch(fetchWeathersStart())
         const stateCityName = getState().weathers.cityName
         try{
@@ -27,7 +25,6 @@ export function fetchWeathers() {
             const data = response.data
 
             dispatch(fetchWeathersSuccess(data))
-            console.log('get',getState().weathers)
             dispatch(getBackStyle())
         } catch(e) {
             dispatch(fetchWeathersError(e))

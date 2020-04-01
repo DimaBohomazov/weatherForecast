@@ -2,6 +2,7 @@ import React from 'react';
 import {NavLink} from "react-router-dom"
 import {connect} from "react-redux"
 import {setCityName} from "../store/actions/weathers"
+import Loader from "../components/UI/Loader"
 
 class ErrorBoundary extends React.Component {
     cityNameHandler = (event) => {
@@ -19,6 +20,7 @@ class ErrorBoundary extends React.Component {
             this.bodyClassRemove()
             return (
                 <div className='container error'>
+                    <Loader />
                     <h1 className='display-1'>
                         Please enter the name of the city located in Ukraine.
                     </h1>

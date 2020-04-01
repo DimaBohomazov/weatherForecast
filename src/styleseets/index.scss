@@ -2,6 +2,11 @@
 body{
   background: linear-gradient(to right, #feac5e, #c779d0, #4bc0c8);
 }
+p{
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.2;
+}
 .night {
   background: linear-gradient(90deg, #483d8b , #1d1b3a , #622569 );
   color: rgba(230, 230, 230, 0.79);
@@ -156,7 +161,7 @@ body{
   text-align: center;
   width: 100%;
   justify-content: center;
-  padding-top: 50px;
+  padding-top:15px;
   padding-bottom: 20px;
   flex-grow: 1;
   form {
@@ -166,9 +171,4 @@ body{
       width: 254px;
     }
   }
-}
-p{
-  font-size: 24px;
-  font-weight: 300;
-  line-height: 1.2;
 }
