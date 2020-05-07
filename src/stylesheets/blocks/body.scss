@@ -1,0 +1,23 @@
+/* body bg styles*/
+body{
+  background: linear-gradient(to right, #feac5e, #c779d0, #4bc0c8);
+
+  font-weight: 300;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.night {
+  background: linear-gradient(to right, #483d8b , #1d1b3a , #622569 );
+  color: rgba(230, 230, 230, 0.79);
+}
+.sunrise{
+  background: linear-gradient(to right, #622569, #a7708f, #f4e1d2)
+}
+.morning{
+  background: linear-gradient(to right, #fefbd8, #ffefba, #ffef96)
+}
+.afternoon{
+  background: linear-gradient(to right, #ffef96, #feb236, #fd8355);
+}
+.evening{
+  background: linear-gradient(to right, #fd8355, #f0576c, #483d8b);
+}

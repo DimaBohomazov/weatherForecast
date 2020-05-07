@@ -1,6 +1,6 @@
 import React from 'react';
 import Loader from "../components/UI/Loader"
-import WeathersFiveDayItems from "../components/WeathersFiveDayItems/WeathersFiveDayItems"
+import WeathersFiveListDay from "../components/WeathersFiveDayItems/WeathersFiveListDay"
 import ErrorBoundary from "../components/ErrorBoundary"
 import {connect} from "react-redux"
 import {fetchWeathersFiveDays} from "../store/actions/weathers"
@@ -12,12 +12,12 @@ class WeatherFiveDay extends React.Component {
         this.props.fetchWeathersFiveDays()
 
     }
-
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.cityName !== this.props.cityName) {
             this.props.fetchWeathersFiveDays()
         }
     }
+
     daysFilter = props => {
         let time = Date.parse(Date()) + 3*3600000 + (86400000 * props);
         return this.props.weatherInfoFiveDays.filter(item =>
@@ -36,15 +36,15 @@ class WeatherFiveDay extends React.Component {
     render() {
         return (
             <ErrorBoundary>
-                <div className='container-'>
-                    <header style={{textAlign: 'center'}}>
-                        <h1 className='display-4' > {this.props.cityName} </h1>
-                        <p>Hourly weather and forecasts in your city.</p>
-                    </header>
+                <div className=''>
+                    <div className='five-header'>
+                        <div className='city-name' > {this.props.cityName} </div>
+                        <div className='five-header__title'>Hourly weather and forecasts in your city.</div>
+                    </div>
                     {this.props.loading
                         ? <Loader />
-                        : <div>
-                            <WeathersFiveDayItems
+                        : <div className='five-main'>
+                            <WeathersFiveListDay
                                 weatherInfo={this.props.weatherInfoFiveDays}
                                 daysFilter={this.daysFilter}
                                 dayDate={this.dayDate()}

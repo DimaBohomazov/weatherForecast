@@ -1,0 +1,34 @@
+.time{
+}
+.time__current{
+  display: flex;
+  justify-content: flex-end;
+  padding: $padding;
+
+
+  font-size: 24px;
+
+  @media(max-width: 1020px){
+    font-size: calc(14px + 14 * ((100vw - 320px) / 1020))
+  }
+}
+.time__current-week {
+  font-weight: 400;
+}
+.time__current-date {
+  max-width: 225px;
+  min-width: 137px;
+  margin-left: 10px;
+  padding-left: 10px;
+  text-align: left;
+}
+.time-list {
+  padding: $padding;
+  display: flex;
+  justify-content: space-around;
+
+  font-size: 24px;
+  @media(max-width: 1020px){
+    font-size: calc(14px + 14 * ((100vw - 320px) / 1020))
+  }
+}

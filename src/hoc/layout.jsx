@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import NavBar from "../components/Navigation/NavBar"
 import DateTime from "../components/UI/DateTime"
 
@@ -6,19 +6,19 @@ class Layout extends Component {
 
     render() {
         return (
-            <div>
-                <header>
+            <Fragment>
+
+                <header className='header'>
                     <NavBar />
                 </header>
 
-                <main>
-                    { this.props.children }
+                <main className='container'>
+                    <DateTime>
+                        { this.props.children }
+                    </DateTime>
                 </main>
 
-                <footer>
-                    <DateTime/>
-                </footer>
-            </div>
+            </Fragment>
         );
     }
 }

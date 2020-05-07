@@ -28,6 +28,7 @@ export function fetchWeathers() {
             dispatch(getBackStyle())
         } catch(e) {
             dispatch(fetchWeathersError(e))
+            console.log('aaaaaaa')
         }
     }
 }
@@ -65,6 +66,7 @@ export function fetchWeathersFiveDays() {
             dispatch(getBackStyle())
         } catch(e) {
             dispatch(fetchWeathersError(e))
+            console.log('aaaaaaa')
         }
     }
 }

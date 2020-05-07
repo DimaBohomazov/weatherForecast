@@ -18,9 +18,11 @@ export function getBackStyle() {
         } else {
             dispatch(setStyle('night'))
         }
-
         const body = document.querySelector('body')
         body.classList.add(getState().background.backStyle)
+        if(body.classList.item(1)){
+            body.classList.remove(body.classList.item(0))
+        }
     }
 }
 export function setStyle(style) {
